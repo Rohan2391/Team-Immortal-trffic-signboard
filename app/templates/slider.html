@@ -1,0 +1,38 @@
+<div class="slider-container">
+    <div class="slider">
+        <img src="https://images.unsplash.com/photo-1579762593155-42faee39d0b4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fHRyYWZmaWMlMjBpbWFnZXMlMjBmb3IlMjBzaWduYm9hcmQlMjBwcm9qZWN0fGVufDB8fDB8fHww" alt="AI Training for Traffic Signs">
+
+        <img src="https://media.istockphoto.com/id/1059472660/vector/road-way-infographics-signs-design-vector-illustration.jpg?s=612x612&w=0&k=20&c=ELRXpFy7HNGy0SXATxFM5dyKYGnA6s_0wHtFUAH9ogg=" alt="Traffic Signal Recognition">
+        <img src="https://www.shutterstock.com/image-vector/concept-poster-driving-courses-3d-260nw-2192730581.jpg" alt="AI Training for Traffic Signs">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOatRaOE0USJMtkdIXQT4zyxxiSTvtjZYdsABsK69RWxSGLtT8WnyR3ZeoOppw4Y16BdI&usqp=CAU" alt="Speed Limit Sign Recognition">
+    </div>
+</div>
+<style>
+    .slider-container {
+        width: 100vw;
+        height: 70vh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .slider {
+        display: flex;
+        width: 400%; /* 4 images */
+        height: 100%;
+        animation: slide 20s infinite;
+    }
+
+    .slider img {
+        width: 100vw;
+        height: 70vh;
+        object-fit: cover;
+    }
+
+    @keyframes slide {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-100vw); }
+        50% { transform: translateX(-200vw); }
+        75% { transform: translateX(-300vw); }
+        100% { transform: translateX(0); }
+    }
+</style>

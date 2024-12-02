@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Dark background color */
+        }
+
+        /* Left Side (Login Form Section) */
+        .login-container {
+            width: 50%; /* Left half of the screen */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1a1a1a; /* Darker gray color for the left side */
+            height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Form Styling */
+        .login-form {
+            background: #222222;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: left; /* Align the text to the left */
+            color: #fff;
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            color: #ff6600; /* Orange color for the title */
+        }
+
+        .login-form label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: block;
+            color: #bbb; /* Lighter grey for text */
+            text-align: left; /* Align labels to the left */
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 1.1em;
+            outline: none;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .login-form input:focus {
+            border-color: #ff6600; /* Focused border color */
+            box-shadow: 0 0 10px rgba(255, 102, 0, 0.6); /* Glow effect */
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-form button:hover {
+            background-color: #e65c00; /* Slightly darker orange on hover */
+        }
+
+        .login-form p {
+            color: red;
+            font-size: 1em;
+        }
+
+        .register-link {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #bbb;
+            text-decoration: none;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Right Side (Animation Section) */
+        .animation-container {
+            width: 50%;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(45deg, #004e92, #000428); /* Gradient background */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Welcome Title */
+        .title {
+            font-size: 3em;
+            color: #1de9b6; /* Light teal color */
+            font-weight: bold;
+            letter-spacing: 3px;
+            opacity: 0;
+            animation: fadeIn 3s forwards, slideInLeft 3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Floating Particle Effect */
+        .particle {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: moveParticles 10s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) { width: 5px; height: 5px; top: 10%; left: 20%; animation-duration: 8s; animation-delay: 2s; }
+        .particle:nth-child(2) { width: 6px; height: 6px; top: 30%; left: 40%; animation-duration: 12s; animation-delay: 3s; }
+        .particle:nth-child(3) { width: 7px; height: 7px; top: 50%; left: 60%; animation-duration: 15s; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 4px; height: 4px; top: 70%; left: 80%; animation-duration: 10s; animation-delay: 5s; }
+        .particle:nth-child(5) { width: 6px; height: 6px; top: 80%; left: 30%; animation-duration: 14s; animation-delay: 6s; }
+
+        /* Particle animation keyframes */
+        @keyframes moveParticles {
+            0% { transform: translate(0, 0); opacity: 0.8; }
+            100% { transform: translate(80vw, 100vh); opacity: 0; }
+        }
+
+        /* Media Query for Mobile */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .login-container, .animation-container {
+                width: 100%;
+                height: auto;
+            }
+
+            .login-form {
+                width: 90%;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .animation-container {
+                display: none; /* Hide animation on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Container with Left Form and Right Animation -->
+    <div style="display: flex; width: 100%; height: 100vh;">
+        <!-- Left side with the login form -->
+        <div class="login-container">
+            <form method="POST" class="login-form">
+                {% csrf_token %}
+                <h2>Login</h2>
+                
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                
+                <button type="submit">Login</button>
+
+                <!-- Forgot Password Link -->
+                
+
+                <!-- Registration Link -->
+                
+                <a href="{% url 'register' %}" class="register-link">Don't have an account? Register here</a>
+                <BR></BR>
+                <a href="{% url 'reset_password' %}" class="register-link">Forgot Password?</a>
+
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </form>
+        </div>
+
+        <!-- Right side with animation and title -->
+        <div class="animation-container">
+            <div class="title">Welcome to Traffic Signboard Instructor</div>
+            <div class="
